@@ -25,17 +25,26 @@ class Panel extends JPanel {
         menu.add(editar);
         menu.add(seleccion);
         menu.add(ver);
-        menu.add(apariencia);
 
-        JMenuItem nuevo = new JMenuItem("Nuevo Archivo");
-        JMenuItem abrir = new JMenuItem("Abrir Archivo");
-        JMenuItem guardar = new JMenuItem("Guardar");
-        JMenuItem guardarC = new JMenuItem("Guardar Como");
+        //--------------------elementos menu archivo
+        agregaItem("Nuevo Archivo","archivo","nuevo");
+        agregaItem("Abrir Archivo","archivo", "abrir");
+        agregaItem("Guardar", "archivo", "guardar");
+        agregaItem("Guardar Como","archivo", "guardarComo");
+        //--------------------elementos menu editar
+        agregaItem("Eliminar", "editar","" );
+        agregaItem("Atras", "editar", "");
+        agregaItem("Cortar", "editar", "");
+        agregaItem("Pegar", "editar", "");
+        agregaItem("Copiar", "editar", "");
+        //-------------------- elementos menu seleccion
+        agregaItem("Seleccionar Todo","seleccion", "");
+        //--------------------elementos menu ver
+        agregaItem("Numeracion ", "ver", "");
+        ver.add(apariencia);
+        agregaItem("Normal","apariencia", "");
+        agregaItem("Dark","apariencia", "");
 
-        archivo.add(nuevo);
-        archivo.add(abrir);
-        archivo.add(guardar);
-        archivo.add(guardarC);
 
         panelMenu.add(menu);
         //--------------------area de texto------------------------
@@ -44,6 +53,22 @@ class Panel extends JPanel {
         creaPanel();
         add(panelMenu);
         add(tPane);
+    }
+    //--------------------agregamos las opciones del menu
+    public void agregaItem(String rotulo, String menu, String accion){
+        elementosMenu = new JMenuItem(rotulo);
+        if(menu.equals("archivo")){
+            archivo.add(elementosMenu);
+        } else if (menu.equals("editar")) {
+            editar.add(elementosMenu);
+        } else if (menu.equals("seleccion")) {
+            seleccion.add(elementosMenu);
+        }else if (menu.equals("ver")){
+            ver.add(elementosMenu);
+        }else if (menu.equals("apariencia")){
+            apariencia.add(elementosMenu);
+        }
+
     }
     //-------------------- creamos las ventanas de texto------------------------
     public void creaPanel(){
@@ -59,4 +84,5 @@ class Panel extends JPanel {
     //-------------------- fin de la creacion ventanas de texto----------------
     private JMenuBar menu;
     private JMenu archivo, editar, seleccion, ver, apariencia;
+    private JMenuItem elementosMenu;
 }
