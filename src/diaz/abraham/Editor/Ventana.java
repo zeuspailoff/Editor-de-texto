@@ -1,6 +1,9 @@
 package diaz.abraham.Editor;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 //-------------------- creamos la ventana del programa
 public class Ventana extends JFrame {
     public Ventana() {
@@ -34,6 +37,7 @@ class Panel extends JPanel {
         //--------------------elementos menu editar
         agregaItem("Eliminar", "editar","" );
         agregaItem("Atras", "editar", "");
+        editar.addSeparator();
         agregaItem("Cortar", "editar", "");
         agregaItem("Pegar", "editar", "");
         agregaItem("Copiar", "editar", "");
@@ -50,23 +54,51 @@ class Panel extends JPanel {
         //--------------------area de texto------------------------
         tPane = new JTabbedPane();
         //--------------------añadimos los objetos a la vista del programa----------------
-        creaPanel();
+
         add(panelMenu);
         add(tPane);
     }
     //--------------------agregamos las opciones del menu
     public void agregaItem(String rotulo, String menu, String accion){
         elementosMenu = new JMenuItem(rotulo);
-        if(menu.equals("archivo")){
-            archivo.add(elementosMenu);
-        } else if (menu.equals("editar")) {
-            editar.add(elementosMenu);
-        } else if (menu.equals("seleccion")) {
-            seleccion.add(elementosMenu);
-        }else if (menu.equals("ver")){
-            ver.add(elementosMenu);
-        }else if (menu.equals("apariencia")){
-            apariencia.add(elementosMenu);
+        switch (menu) {
+            case "archivo" -> {
+                archivo.add(elementosMenu);
+                switch (accion) {
+                    case "nuevo" -> elementosMenu.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            creaPanel();
+                        }
+                    });
+                    case "abrir" -> elementosMenu.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                        }
+                    });
+                    case "guardar" -> elementosMenu.addActionListener(e ->new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                        }
+                    });
+                    case "guardarComo" -> elementosMenu.addActionListener(e -> new ActionListener(){
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                        }
+                    });
+                }
+            }
+            case "editar" -> editar.add(elementosMenu);
+            case "seleccion" -> seleccion.add(elementosMenu);
+            case "ver" -> ver.add(elementosMenu);
+            case "apariencia" -> apariencia.add(elementosMenu);
         }
 
     }
@@ -81,7 +113,7 @@ class Panel extends JPanel {
     private JTabbedPane tPane;
     private  JPanel ventanaText;
     private JTextPane areaText;
-    //-------------------- fin de la creacion ventanas de texto----------------
+    //-------------------- creamos opciones del menu----------------
     private JMenuBar menu;
     private JMenu archivo, editar, seleccion, ver, apariencia;
     private JMenuItem elementosMenu;
