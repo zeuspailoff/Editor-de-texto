@@ -120,6 +120,7 @@ class Panel extends JPanel {
 
         ventanaText.add(listAreaScroll.get(contadorVentana));
         tPane.addTab("nueva ventana",ventanaText);
+        tPane.setSelectedIndex(contadorVentana);
         contadorVentana++;
         existeVentana = true;
     }
