@@ -81,7 +81,7 @@ class Panel extends JPanel {
 
                         @Override
                         public void actionPerformed(ActionEvent e) {
-
+                            JFileChooser slectorArchivos = new JFileChooser();
                         }
                     });
                     case "guardar" -> elementosMenu.addActionListener(e ->new ActionListener() {
