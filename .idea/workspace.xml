@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="empesamos con los metodos de la clase archivo">
+    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="agregamos abrir archivo">
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/AgregamosTextoLinea.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Ventana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Ventana.java" afterDir="false" />
     </list>
@@ -63,6 +65,11 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="diaz.abraham.Editor" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="diaz.abraham.Editor.Main" />
@@ -169,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674832279479</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="agregamos abrir archivo">
+      <created>1675095341244</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1675095341244</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,6 +203,7 @@
     <MESSAGE value="añadimos funcionalida" />
     <MESSAGE value="añadimos funcionalidad con arraylist" />
     <MESSAGE value="empesamos con los metodos de la clase archivo" />
-    <option name="LAST_COMMIT_MESSAGE" value="empesamos con los metodos de la clase archivo" />
+    <MESSAGE value="agregamos abrir archivo" />
+    <option name="LAST_COMMIT_MESSAGE" value="agregamos abrir archivo" />
   </component>
 </project>
