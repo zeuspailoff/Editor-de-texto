@@ -3,7 +3,7 @@ package diaz.abraham.Editor;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 
 //-------------------- creamos la ventana del programa
@@ -78,10 +78,53 @@ class Panel extends JPanel {
                         }
                     });
                     case "abrir" -> elementosMenu.addActionListener(new ActionListener() {
-
+                        //-------------------- preparamos la lectura y apertura de archivos
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            creaPanel();
                             JFileChooser slectorArchivos = new JFileChooser();
+                            slectorArchivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+                            int resultado = slectorArchivos.showOpenDialog(listAreaTexto.get(
+                                    tPane.getSelectedIndex()));
+
+                            if(resultado == JFileChooser.APPROVE_OPTION) {
+                                try {
+                                    boolean existePath = false;
+
+                                    for(int i = 0; i<tPane.getTabCount(); i++) {
+                                        File f = slectorArchivos.getSelectedFile();
+
+                                        if(listFile.get(i).getPath().equals(f.getPath())) existePath = true;
+                                    }
+                                    if(!existePath){
+                                        File archivo = slectorArchivos.getSelectedFile();
+                                        listFile.set(tPane.getSelectedIndex(), archivo);
+
+                                            FileReader entrada = new FileReader(
+                                                    listFile.get(
+                                                    tPane.getSelectedIndex())
+                                                    .getPath());
+                                            BufferedReader miReader = new BufferedReader(entrada);
+                                            String linea = "";
+
+                                            String titulo = listFile.get(tPane.getSelectedIndex()).getName();
+                                            // el titulo se le agrega a la pestaña creada para el area de texto
+                                            tPane.setTitleAt(tPane.getSelectedIndex(), titulo);
+                                            // lee cada linea del archivo para despues imprimirlo
+                                            while (linea != null){
+                                                linea = miReader.readLine();
+
+                                                if (linea !=null) listAreaTexto.get(tPane.getSelectedIndex())
+                                                        .setText(linea);
+                                            }
+                                        }
+
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+
+                            }
+
                         }
                     });
                     case "guardar" -> elementosMenu.addActionListener(e ->new ActionListener() {
