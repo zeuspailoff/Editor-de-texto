@@ -111,7 +111,7 @@ class Panel extends JPanel {
                                             linea = miReader.readLine();
 
                                             if (linea != null) AgregamosTextoLinea.append
-                                                    (linea + "/n", listAreaTexto
+                                                    (linea+"\n", listAreaTexto
                                                             .get(tPane.getSelectedIndex()));
 
                                         }
@@ -130,6 +130,8 @@ class Panel extends JPanel {
                                                 tPane.remove(tPane.getTabCount()-1);
                                                 contadorVentana--;
 
+                                                break;
+
                                             }
                                         }
                                     }
@@ -138,6 +140,19 @@ class Panel extends JPanel {
                                     throw new RuntimeException(ex);
                                 }
 
+                            }else{
+                                // si el usuario cancela eliminamos la nueva ventana creada
+                                int seleccion = tPane.getSelectedIndex();
+
+                                if(seleccion != -1){
+
+                                    listAreaTexto.remove(tPane.getTabCount()-1);
+                                    listAreaScroll.remove(tPane.getTabCount()-1);
+                                    listFile.remove(tPane.getTabCount()-1);
+                                    tPane.remove(tPane.getTabCount()-1);
+                                    contadorVentana--;
+
+                                }
                             }
 
                         }
