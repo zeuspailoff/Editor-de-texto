@@ -304,11 +304,14 @@ class Panel extends JPanel {
 
         ventanaText.add(listAreaScroll.get(contadorVentana));
         tPane.addTab("nueva ventana", ventanaText);
+
+        verNumeracion.Numeracion(numeros, listAreaTexto.get(contadorVentana), listAreaScroll.get(contadorVentana));
         tPane.setSelectedIndex(contadorVentana);
         contadorVentana++;
         existeVentana = true;
     }
 
+    private Boolean numeros = false;
     private int contadorVentana = 0;//nos cuenta las ventanas de texto
     private boolean existeVentana = false;// comprobamos si exiten ventanas creadas
     private JTabbedPane tPane;
