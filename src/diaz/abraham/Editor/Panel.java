@@ -203,6 +203,36 @@ class Panel extends JPanel {
 
                         }
                     });
+                    case "guardarComo" -> elementosMenu.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            JFileChooser guardarArchivo = new JFileChooser();
+                            int opc = guardarArchivo.showOpenDialog(null);
+
+                            if (opc == JFileChooser.APPROVE_OPTION) {
+                                File archivo = guardarArchivo.getSelectedFile();
+                                listFile.set(tPane.getSelectedIndex(), archivo);
+                                tPane.setTitleAt(tPane.getSelectedIndex(), archivo.getName());
+
+                                try {
+                                    FileWriter fw = new FileWriter(listFile.get(tPane.getSelectedIndex()).getPath());
+                                    String texto = listAreaTexto.get(tPane.getSelectedIndex()).getText();
+
+                                    for(int i = 0; i <texto.length(); i++){
+                                        fw.write(texto.charAt(i));
+                                    }
+
+                                    fw.close();
+
+
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+                            }
+                        }
+                    });
+
                 }
             }
             case "editar" -> editar.add(elementosMenu);
