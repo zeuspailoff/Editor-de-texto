@@ -3,10 +3,7 @@ package diaz.abraham.Editor;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 
 class Panel extends JPanel {
@@ -98,8 +95,9 @@ class Panel extends JPanel {
 
                                         FileReader entrada = new FileReader(
                                                 listFile.get(
-                                                                tPane.getSelectedIndex())
+                                                        tPane.getSelectedIndex())
                                                         .getPath());
+
                                         BufferedReader miReader = new BufferedReader(entrada);
                                         String linea = "";
 
@@ -111,7 +109,7 @@ class Panel extends JPanel {
                                             linea = miReader.readLine();
 
                                             if (linea != null) AgregamosTextoLinea.append
-                                                    (linea+"\n", listAreaTexto
+                                                    (linea + "\n", listAreaTexto
                                                             .get(tPane.getSelectedIndex()));
 
                                         }
@@ -155,12 +153,53 @@ class Panel extends JPanel {
                                 }
                             }
 
+
                         }
                     });
-                    case "guardar", "guardarComo" -> elementosMenu.addActionListener(e -> new ActionListener() {
+                    case "guardar" -> elementosMenu.addActionListener(new ActionListener() {
 
                         @Override
                         public void actionPerformed(ActionEvent e) {
+                            if(listFile.get(tPane.getSelectedIndex()).getPath().equals("")){
+                                JFileChooser guardarArchivo = new JFileChooser();
+                                int opc = guardarArchivo.showOpenDialog(null);
+
+                                if(opc == JFileChooser.APPROVE_OPTION){
+                                    File archivo = guardarArchivo.getSelectedFile();
+                                    listFile.set(tPane.getSelectedIndex(), archivo);
+                                    tPane.setTitleAt(tPane.getSelectedIndex(), archivo.getName());
+
+                                    try {
+                                        FileWriter fw = new FileWriter(listFile.get(tPane.getSelectedIndex()).getPath());
+                                        String texto = listAreaTexto.get(tPane.getSelectedIndex()).getText();
+
+                                        for(int i = 0; i <texto.length(); i++){
+                                            fw.write(texto.charAt(i));
+                                        }
+
+                                        fw.close();
+
+
+                                    } catch (IOException ex) {
+                                        throw new RuntimeException(ex);
+                                    }
+                                }
+                            }else {
+                                try {
+                                    FileWriter fw = new FileWriter(listFile.get(tPane.getSelectedIndex()).getPath());
+                                    String texto = listAreaTexto.get(tPane.getSelectedIndex()).getText();
+
+
+                                    for(int i = 0; i <texto.length(); i++){
+                                        fw.write(texto.charAt(i));
+                                    }
+
+                                    fw.close();
+                                } catch (IOException ex) {
+                                    throw new RuntimeException(ex);
+                                }
+
+                            }
 
                         }
                     });
