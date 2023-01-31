@@ -37,7 +37,7 @@ class Panel extends JPanel {
         agregaItem("Pegar", "editar", "copiar");
         agregaItem("Copiar", "editar", "pegar");
         //-------------------- elementos menu seleccion
-        agregaItem("Seleccionar Todo", "seleccion", "");
+        agregaItem("Seleccionar Todo", "seleccion", "seleccion");
         //--------------------elementos menu ver
         agregaItem("Numeracion ", "ver", "");
         ver.add(apariencia);
@@ -265,7 +265,17 @@ class Panel extends JPanel {
                     }
                 }
 
-            case "seleccion" -> seleccion.add(elementosMenu);
+            case "seleccion" ->{
+                seleccion.add(elementosMenu);
+                elementosMenu.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        listAreaTexto.get(tPane.getSelectedIndex()).selectAll();
+                    }
+                });
+            }
+
             case "ver" -> ver.add(elementosMenu);
             case "apariencia" -> apariencia.add(elementosMenu);
 
