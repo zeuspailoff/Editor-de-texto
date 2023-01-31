@@ -1,6 +1,8 @@
 package diaz.abraham.Editor;
 
 import javax.swing.*;
+import javax.swing.text.DefaultEditorKit;
+import javax.swing.undo.UndoManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
@@ -28,12 +30,12 @@ class Panel extends JPanel {
         agregaItem("Guardar", "archivo", "guardar");
         agregaItem("Guardar Como", "archivo", "guardarComo");
         //--------------------elementos menu editar
-        agregaItem("Eliminar", "editar", "");
-        agregaItem("Atras", "editar", "");
+        agregaItem("Eliminar", "editar", "deshacer");
+        agregaItem("Atras", "editar", "rehacer");
         editar.addSeparator();
-        agregaItem("Cortar", "editar", "");
-        agregaItem("Pegar", "editar", "");
-        agregaItem("Copiar", "editar", "");
+        agregaItem("Cortar", "editar", "cortar");
+        agregaItem("Pegar", "editar", "copiar");
+        agregaItem("Copiar", "editar", "pegar");
         //-------------------- elementos menu seleccion
         agregaItem("Seleccionar Todo", "seleccion", "");
         //--------------------elementos menu ver
@@ -49,6 +51,7 @@ class Panel extends JPanel {
         listFile = new ArrayList<File>();
         listAreaTexto = new ArrayList<JTextPane>();
         listAreaScroll = new ArrayList<JScrollPane>();
+        listManager = new ArrayList<UndoManager>();// rastreamos los cambios del area de texto
         //--------------------añadimos los objetos a la vista del programa----------------
 
         add(panelMenu);
@@ -157,18 +160,18 @@ class Panel extends JPanel {
                         }
                     });
                     case "guardar" -> elementosMenu.addActionListener(new ActionListener() {
-
+                            //--------------------
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             if(listFile.get(tPane.getSelectedIndex()).getPath().equals("")){
                                 JFileChooser guardarArchivo = new JFileChooser();
                                 int opc = guardarArchivo.showOpenDialog(null);
-
+                                    //--------------------preguntamos al usuario si guarda o cancela
                                 if(opc == JFileChooser.APPROVE_OPTION){
                                     File archivo = guardarArchivo.getSelectedFile();
                                     listFile.set(tPane.getSelectedIndex(), archivo);
                                     tPane.setTitleAt(tPane.getSelectedIndex(), archivo.getName());
-
+                                        //--------------------leemos y reescribimos el archivo en un o nuevo que guardamos
                                     try {
                                         FileWriter fw = new FileWriter(listFile.get(tPane.getSelectedIndex()).getPath());
                                         String texto = listAreaTexto.get(tPane.getSelectedIndex()).getText();
@@ -235,13 +238,45 @@ class Panel extends JPanel {
 
                 }
             }
-            case "editar" -> editar.add(elementosMenu);
+            case "editar" -> {
+                editar.add(elementosMenu);
+                switch (accion){
+                    case "deshacer" -> elementosMenu.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                           if(listManager.get(tPane.getSelectedIndex()).canUndo()){
+                              listManager.get(tPane.getSelectedIndex()).undo();
+                           }
+                        }
+                    });
+                    case "rehacer" -> elementosMenu.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            if(listManager.get(tPane.getSelectedIndex()).canRedo()){
+                                listManager.get(tPane.getSelectedIndex()).redo();
+                            }
+                        }
+                    });
+                    case "cortar" -> elementosMenu.addActionListener(new DefaultEditorKit.CutAction());
+                    case "copiar" -> elementosMenu.addActionListener(new DefaultEditorKit.CopyAction());
+                    case "pegar" -> elementosMenu.addActionListener(new DefaultEditorKit.PasteAction());
+
+
+                    }
+                }
+
             case "seleccion" -> seleccion.add(elementosMenu);
             case "ver" -> ver.add(elementosMenu);
             case "apariencia" -> apariencia.add(elementosMenu);
+
+
         }
 
-    }
+
+
+        }
+
+
 
     //-------------------- creamos las ventanas de texto------------------------
     public void creaPanel() {
@@ -252,6 +287,9 @@ class Panel extends JPanel {
         listFile.add(new File(""));
         listAreaTexto.add(new JTextPane());
         listAreaScroll.add(new JScrollPane(listAreaTexto.get(contadorVentana)));
+        listManager.add(new UndoManager());
+
+        listAreaTexto.get(contadorVentana).getDocument().addUndoableEditListener(listManager.get(contadorVentana));
 
 
         ventanaText.add(listAreaScroll.get(contadorVentana));
@@ -267,6 +305,7 @@ class Panel extends JPanel {
     private JPanel ventanaText;
     //private JTextPane areaText;
     private ArrayList<JTextPane> listAreaTexto;
+    private ArrayList<UndoManager> listManager;
     private ArrayList<JScrollPane> listAreaScroll;
     private ArrayList<File> listFile;
 

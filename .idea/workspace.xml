@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="añadimos opción guardar">
+    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="añadimos opción guardar Como">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Ventana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Ventana.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -202,7 +203,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675171681114</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="añadimos opción guardar Como">
+      <created>1675172640841</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1675172640841</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,6 +233,7 @@
     <MESSAGE value="agregamos abrir archivo" />
     <MESSAGE value="completamos abrir archivo" />
     <MESSAGE value="añadimos opción guardar" />
-    <option name="LAST_COMMIT_MESSAGE" value="añadimos opción guardar" />
+    <MESSAGE value="añadimos opción guardar Como" />
+    <option name="LAST_COMMIT_MESSAGE" value="añadimos opción guardar Como" />
   </component>
 </project>
