@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="añadimos funciones menu seleccion">
-      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/TextLineNumber.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/verNumeracion.java" afterDir="false" />
+    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="añadimos funciones empezamos menu ver">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/verNumeracion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/verNumeracion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -225,7 +224,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675182130930</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="añadimos funciones empezamos menu ver">
+      <created>1675184665174</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1675184665174</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -251,6 +257,7 @@
     <MESSAGE value="añadimos opción guardar Como" />
     <MESSAGE value="añadimos funciones menu editar" />
     <MESSAGE value="añadimos funciones menu seleccion" />
-    <option name="LAST_COMMIT_MESSAGE" value="añadimos funciones menu seleccion" />
+    <MESSAGE value="añadimos funciones empezamos menu ver" />
+    <option name="LAST_COMMIT_MESSAGE" value="añadimos funciones empezamos menu ver" />
   </component>
 </project>
