@@ -41,8 +41,8 @@ class Panel extends JPanel {
         //--------------------elementos menu ver
         agregaItem("Numeracion ", "ver", "numeracion");
         ver.add(apariencia);
-        agregaItem("Normal", "apariencia", "");
-        agregaItem("Dark", "apariencia", "");
+        agregaItem("Normal", "apariencia", "normal");
+        agregaItem("Dark", "apariencia", "dark");
 
 
         panelMenu.add(menu);
@@ -116,6 +116,7 @@ class Panel extends JPanel {
                                                             .get(tPane.getSelectedIndex()));
 
                                         }
+                                        Theme.fondo(contadorVentana, tipoFondo, listAreaTexto);
                                     } else {
                                         // si el archivo esta abierto vamos a recorrer las ventanas para irnos a la abierta
                                         for (int i = 0; i < tPane.getTabCount(); i++) {
@@ -290,21 +291,34 @@ class Panel extends JPanel {
 
                 }
             }
-            case "apariencia" -> apariencia.add(elementosMenu);
+            case "apariencia" -> {
+                apariencia.add(elementosMenu);
+                if(accion.equals("normal")){
+                    elementosMenu.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tipoFondo = "N";
+                            if(tPane.getTabCount() >0) Theme.fondo(contadorVentana, tipoFondo, listAreaTexto);
+                        }
+                    });
+                } else if (accion.equals("dark")) {
+                    elementosMenu.addActionListener(new ActionListener() {
+
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            tipoFondo = "D";
+                            if(tPane.getTabCount()> 0) Theme.fondo(contadorVentana, tipoFondo, listAreaTexto);
+                        }
+                    });
+
+                }
+            }
+
 
         }
 
 
     }
-
-
-
-
-
-
-
-
-
 
     //-------------------- creamos las ventanas de texto------------------------
     public void creaPanel() {
@@ -324,11 +338,16 @@ class Panel extends JPanel {
         tPane.addTab("nueva ventana", ventanaText);
 
         verNumeracion.Numeracion(numeros, listAreaTexto.get(contadorVentana), listAreaScroll.get(contadorVentana));
+
         tPane.setSelectedIndex(contadorVentana);
         contadorVentana++;
-        existeVentana = true;
-    }
 
+        Theme.fondo(contadorVentana, tipoFondo, listAreaTexto);
+
+        existeVentana = true;
+
+    }
+    private String tipoFondo = "W";
     private Boolean numeros = false;
     private int contadorVentana = 0;//nos cuenta las ventanas de texto
     private boolean existeVentana = false;// comprobamos si exiten ventanas creadas

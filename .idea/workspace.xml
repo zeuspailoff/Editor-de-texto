@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="añadimos funciones empezamos menu ver">
+    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="añadimos funciones numeracion">
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Theme.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/verNumeracion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/verNumeracion.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -231,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675184665174</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="añadimos funciones numeracion">
+      <created>1675251292896</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1675251292896</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,6 +265,7 @@
     <MESSAGE value="añadimos funciones menu editar" />
     <MESSAGE value="añadimos funciones menu seleccion" />
     <MESSAGE value="añadimos funciones empezamos menu ver" />
-    <option name="LAST_COMMIT_MESSAGE" value="añadimos funciones empezamos menu ver" />
+    <MESSAGE value="añadimos funciones numeracion" />
+    <option name="LAST_COMMIT_MESSAGE" value="añadimos funciones numeracion" />
   </component>
 </project>
