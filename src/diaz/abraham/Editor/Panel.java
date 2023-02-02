@@ -2,6 +2,7 @@ package diaz.abraham.Editor;
 
 import diaz.abraham.Editor.Utilidades.AgregamosTextoLinea;
 import diaz.abraham.Editor.Utilidades.Theme;
+import diaz.abraham.Editor.Utilidades.ToolBar;
 import diaz.abraham.Editor.Utilidades.verNumeracion;
 
 import javax.swing.*;
@@ -12,6 +13,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+
+import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
 
 class Panel extends JPanel {
     public Panel() {
@@ -60,10 +63,45 @@ class Panel extends JPanel {
 
         //-------------------- barra de herramientas --------------------
         herramientas = new JToolBar(JToolBar.VERTICAL);
+        url = Main.class.getResource("src/diaz/abraham/Img/icons8-eliminar-propiedad-24.png");
+        ToolBar.addButton(url, herramientas, "Cerrar ventana").addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int seleccion = tPane.getSelectedIndex();
+                if (seleccion != -1){
+                    //--------------------si existen ventanas abiertas eliminamos la ventana seleccionada----
+                    listAreaScroll.get(tPane.getSelectedIndex()).setRowHeader(null);
+                    tPane.remove(seleccion);
+                    listAreaTexto.remove(seleccion);
+                    listAreaScroll.remove(seleccion);
+                    listManager.remove(seleccion);
+                    listFile.remove(seleccion);
+
+                    contadorVentana--;
+
+                    if(tPane.getSelectedIndex() == -1){
+                        existeVentana = false;
+                    }
+                }
+            }
+        });
+
+        url = Main.class.getResource("diaz/abraham/Img/icons8-nueva-ventana-50.png");
+        ToolBar.addButton(url, herramientas, "Nueva ventana").addActionListener(new ActionListener(){
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                creaPanel();
+            }
+        });
+
+
         //--------------------añadimos los objetos a la vista del programa----------------
 
         add(panelMenu);
         add(tPane);
+        add(herramientas);
+
     }
 
     //--------------------agregamos las opciones del menu

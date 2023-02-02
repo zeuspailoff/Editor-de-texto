@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="añadimos funciones apariencia dark y normal">
-      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/ToolBar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/3914337.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/3917759.svg" afterDir="false" />
+    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="añadimos funciones barra de herramientas y iconos para la misma">
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/icons8-eliminar-propiedad-24.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/icons8-nueva-ventana-50.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/AgregamosTextoLinea.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/AgregamosTextoLinea.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/TextLineNumber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/TextLineNumber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Theme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/Theme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/verNumeracion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/verNumeracion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Img/+.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Img/X.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +68,9 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\proyectos open bootcamp\java\ThunderEdit\src\diaz\abraham\Img" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="diaz.abraham.Editor" />
     </key>
@@ -251,7 +251,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675256834059</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="añadimos funciones barra de herramientas y iconos para la misma">
+      <created>1675355077465</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1675355077465</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -280,6 +287,7 @@
     <MESSAGE value="añadimos funciones empezamos menu ver" />
     <MESSAGE value="añadimos funciones numeracion" />
     <MESSAGE value="añadimos funciones apariencia dark y normal" />
-    <option name="LAST_COMMIT_MESSAGE" value="añadimos funciones apariencia dark y normal" />
+    <MESSAGE value="añadimos funciones barra de herramientas y iconos para la misma" />
+    <option name="LAST_COMMIT_MESSAGE" value="añadimos funciones barra de herramientas y iconos para la misma" />
   </component>
 </project>
