@@ -1,4 +1,4 @@
-package diaz.abraham.Editor;
+package diaz.abraham.Editor.Utilidades;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.*;

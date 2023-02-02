@@ -1,4 +1,4 @@
-package diaz.abraham.Editor;
+package diaz.abraham.Editor.Utilidades;
 
 import javax.swing.*;
 import java.util.ArrayList;

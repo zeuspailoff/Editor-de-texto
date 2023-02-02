@@ -1,11 +1,16 @@
 package diaz.abraham.Editor;
 
+import diaz.abraham.Editor.Utilidades.AgregamosTextoLinea;
+import diaz.abraham.Editor.Utilidades.Theme;
+import diaz.abraham.Editor.Utilidades.verNumeracion;
+
 import javax.swing.*;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 
 class Panel extends JPanel {
@@ -52,6 +57,9 @@ class Panel extends JPanel {
         listAreaTexto = new ArrayList<JTextPane>();
         listAreaScroll = new ArrayList<JScrollPane>();
         listManager = new ArrayList<UndoManager>();// rastreamos los cambios del area de texto
+
+        //-------------------- barra de herramientas --------------------
+        herramientas = new JToolBar(JToolBar.VERTICAL);
         //--------------------añadimos los objetos a la vista del programa----------------
 
         add(panelMenu);
@@ -363,4 +371,6 @@ class Panel extends JPanel {
     private JMenuBar menu;
     private JMenu archivo, editar, seleccion, ver, apariencia;
     private JMenuItem elementosMenu;
+    private JToolBar herramientas;
+    private URL url;
 }
