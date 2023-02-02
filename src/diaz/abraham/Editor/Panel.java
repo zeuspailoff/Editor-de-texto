@@ -8,25 +8,33 @@ import diaz.abraham.Editor.Utilidades.verNumeracion;
 import javax.swing.*;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
 
-import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
-
 class Panel extends JPanel {
     public Panel() {
+
+        BorderLayout border = new BorderLayout();
+        setLayout(border);
+
         //--------------------menu -----
         JPanel panelMenu = new JPanel();
+
+        panelMenu.setLayout(new BorderLayout());
+
         menu = new JMenuBar();
         archivo = new JMenu("Archivo");
         editar = new JMenu("Editar");
         seleccion = new JMenu("Seleccion");
         ver = new JMenu("Ver");
         apariencia = new JMenu("Apariencia");
+
         // creamos las opciones del menu
+
         menu.add(archivo);
         menu.add(editar);
         menu.add(seleccion);
@@ -63,7 +71,7 @@ class Panel extends JPanel {
 
         //-------------------- barra de herramientas --------------------
         herramientas = new JToolBar(JToolBar.VERTICAL);
-        url = Main.class.getResource("src/diaz/abraham/Img/icons8-eliminar-propiedad-24.png");
+        url = Main.class.getResource("/diaz/abraham/Img/icons8-eliminar-propiedad-24.png");
         ToolBar.addButton(url, herramientas, "Cerrar ventana").addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -98,9 +106,9 @@ class Panel extends JPanel {
 
         //--------------------añadimos los objetos a la vista del programa----------------
 
-        add(panelMenu);
-        add(tPane);
-        add(herramientas);
+        add(panelMenu, BorderLayout.NORTH);
+        add(tPane, BorderLayout.CENTER);
+        add(herramientas, BorderLayout.WEST);
 
     }
 
@@ -371,7 +379,7 @@ class Panel extends JPanel {
 
 
         ventanaText = new JPanel();
-
+        ventanaText.setLayout(new BorderLayout());
         listFile.add(new File(""));
         listAreaTexto.add(new JTextPane());
         listAreaScroll.add(new JScrollPane(listAreaTexto.get(contadorVentana)));
@@ -380,7 +388,7 @@ class Panel extends JPanel {
         listAreaTexto.get(contadorVentana).getDocument().addUndoableEditListener(listManager.get(contadorVentana));
 
 
-        ventanaText.add(listAreaScroll.get(contadorVentana));
+        ventanaText.add(listAreaScroll.get(contadorVentana), BorderLayout.CENTER);
         tPane.addTab("nueva ventana", ventanaText);
 
         verNumeracion.Numeracion(numeros, listAreaTexto.get(contadorVentana), listAreaScroll.get(contadorVentana));

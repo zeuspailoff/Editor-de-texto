@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="añadimos funciones barra de herramientas y iconos para la misma">
-      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/icons8-eliminar-propiedad-24.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/icons8-nueva-ventana-50.png" afterDir="false" />
+    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="Terminamos barra de herramientes a falta de icons">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Img/+.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Img/X.svg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +60,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "last_opened_file_path": "D:/proyectos open bootcamp/java/ThunderEdit/src/diaz/abraham/Img",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -258,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675355077465</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Terminamos barra de herramientes a falta de icons">
+      <created>1675359100967</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1675359100967</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -288,6 +291,7 @@
     <MESSAGE value="añadimos funciones numeracion" />
     <MESSAGE value="añadimos funciones apariencia dark y normal" />
     <MESSAGE value="añadimos funciones barra de herramientas y iconos para la misma" />
-    <option name="LAST_COMMIT_MESSAGE" value="añadimos funciones barra de herramientas y iconos para la misma" />
+    <MESSAGE value="Terminamos barra de herramientes a falta de icons" />
+    <option name="LAST_COMMIT_MESSAGE" value="Terminamos barra de herramientes a falta de icons" />
   </component>
 </project>
