@@ -11,6 +11,8 @@ import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -105,8 +107,43 @@ class Panel extends JPanel {
         //-------------------- Panel extra --------------------------------
         ventanaExtra = new JPanel();
         ventanaExtra.setLayout(new BorderLayout());
-
+                // etiqueta izquierda panel extra
         JPanel ventanaIzquierda = new JPanel();
+        labelAncla = new JLabel();
+
+        url = Main.class.getResource("/diaz/abraham/Img/icons8-ancla-50.png");
+        labelAncla.setIcon(new ImageIcon(new ImageIcon(url)
+                        .getImage()
+                        .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+        //--------------------añadimos funcionalidad --------------------------------
+        labelAncla.addMouseListener(new MouseAdapter(){
+
+            public void mouseEntered(MouseEvent e) {//al pasar el raton encima cambia de imagen
+                url = Main.class.getResource("/diaz/abraham/Img/icons8-ancla-50 (1).png");
+                labelAncla.setIcon(new ImageIcon(new ImageIcon(url)
+                        .getImage()
+                        .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+            }
+            public void mouseExited(MouseEvent e){//si el raton sale de la etiqueta devuelve la imagen normal
+
+                if (estadoAncla) {
+                    url = Main.class.getResource("/diaz/abraham/Img/icons8-ancla-50 (1).png");
+                    labelAncla.setIcon(new ImageIcon(new ImageIcon(url)
+                            .getImage()
+                            .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+                }else{
+                    url = Main.class.getResource("/diaz/abraham/Img/icons8-ancla-50.png");
+                    labelAncla.setIcon(new ImageIcon(new ImageIcon(url)
+                            .getImage()
+                            .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
+                }
+            }
+            public void mousePressed(MouseEvent e){// si damos click activamos las funciones ancla
+                estadoAncla = !estadoAncla;
+            }
+        });
+
+        ventanaIzquierda.add(labelAncla);
         JPanel ventanaCentro = new JPanel();
 
         ventanaExtra.add(ventanaIzquierda, BorderLayout.WEST);
@@ -429,4 +466,7 @@ class Panel extends JPanel {
     private JMenuItem elementosMenu;
     private JToolBar herramientas;
     private URL url;
+
+    private JLabel labelAncla;
+    private Boolean estadoAncla = false;
 }

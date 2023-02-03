@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="arreglamos codigo que no permitia que los icons se mostraran">
+    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="agregamos ventana inferior">
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/icons8-ancla-50 (1).png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/icons8-ancla-50.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" afterDir="false" />
     </list>
@@ -275,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675441233512</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="agregamos ventana inferior">
+      <created>1675442425691</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1675442425691</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -307,7 +316,8 @@
     <MESSAGE value="añadimos funciones barra de herramientas y iconos para la misma" />
     <MESSAGE value="Terminamos barra de herramientes a falta de icons" />
     <MESSAGE value="arreglamos codigo que no permitia que los icons se mostraran" />
-    <option name="LAST_COMMIT_MESSAGE" value="arreglamos codigo que no permitia que los icons se mostraran" />
+    <MESSAGE value="agregamos ventana inferior" />
+    <option name="LAST_COMMIT_MESSAGE" value="agregamos ventana inferior" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
