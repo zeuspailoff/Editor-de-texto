@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="Terminamos barra de herramientes a falta de icons">
+    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="arreglamos codigo que no permitia que los icons se mostraran">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/ToolBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/ToolBar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -268,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675362683083</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="arreglamos codigo que no permitia que los icons se mostraran">
+      <created>1675441233512</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1675441233512</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -299,6 +306,17 @@
     <MESSAGE value="añadimos funciones apariencia dark y normal" />
     <MESSAGE value="añadimos funciones barra de herramientas y iconos para la misma" />
     <MESSAGE value="Terminamos barra de herramientes a falta de icons" />
-    <option name="LAST_COMMIT_MESSAGE" value="Terminamos barra de herramientes a falta de icons" />
+    <MESSAGE value="arreglamos codigo que no permitia que los icons se mostraran" />
+    <option name="LAST_COMMIT_MESSAGE" value="arreglamos codigo que no permitia que los icons se mostraran" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

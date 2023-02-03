@@ -102,6 +102,15 @@ class Panel extends JPanel {
                 creaPanel();
             }
         });
+        //-------------------- Panel extra --------------------------------
+        ventanaExtra = new JPanel();
+        ventanaExtra.setLayout(new BorderLayout());
+
+        JPanel ventanaIzquierda = new JPanel();
+        JPanel ventanaCentro = new JPanel();
+
+        ventanaExtra.add(ventanaIzquierda, BorderLayout.WEST);
+        ventanaExtra.add(ventanaCentro, BorderLayout.CENTER);
 
 
         //--------------------añadimos los objetos a la vista del programa----------------
@@ -109,7 +118,7 @@ class Panel extends JPanel {
         add(panelMenu, BorderLayout.NORTH);
         add(tPane, BorderLayout.CENTER);
         add(herramientas, BorderLayout.WEST);
-
+        add(ventanaExtra, BorderLayout.SOUTH);
     }
 
     //--------------------agregamos las opciones del menu
@@ -407,6 +416,7 @@ class Panel extends JPanel {
     private boolean existeVentana = false;// comprobamos si exiten ventanas creadas
     private JTabbedPane tPane;
     private JPanel ventanaText;
+    private JPanel ventanaExtra;
     //private JTextPane areaText;
     private ArrayList<JTextPane> listAreaTexto;
     private ArrayList<UndoManager> listManager;
