@@ -1,7 +1,5 @@
 package diaz.abraham.Editor;
 
-import diaz.abraham.Editor.Utilidades.ImgFondo;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,10 +10,9 @@ import java.awt.*;
 public class Ventana extends JFrame {
     @Override
     public Image getIconImage() {
-        Image retValue = Toolkit.getDefaultToolkit()
-                .getImage(ClassLoader.getSystemResource("diaz/abraham/Img/icons8-electricity-hazard-48.png"));
 
-        return retValue;
+        return Toolkit.getDefaultToolkit()
+                .getImage(ClassLoader.getSystemResource("diaz/abraham/Img/icons8-electricity-hazard-48.png"));
     }
 
 

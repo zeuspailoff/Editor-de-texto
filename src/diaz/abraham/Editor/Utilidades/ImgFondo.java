@@ -2,12 +2,12 @@ package diaz.abraham.Editor.Utilidades;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 
 public class ImgFondo extends JPanel {
-    private Image img;
     @Override
     public void paint(Graphics g) {
-        img = new ImageIcon(getClass().getResource("/diaz/abraham/Img/rayo.jpg")).getImage();
+        Image img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/diaz/abraham/Img/rayo.jpg"))).getImage();
         g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
 
         setOpaque(false);
