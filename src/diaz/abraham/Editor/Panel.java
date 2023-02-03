@@ -3,31 +3,43 @@ package diaz.abraham.Editor;
 import diaz.abraham.Editor.Utilidades.*;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Objects;
 
 class Panel extends JPanel {
+
+    @Override
+    public void paint(Graphics g) {
+        Image img = new ImageIcon(Objects.requireNonNull(getClass().getResource("/diaz/abraham/Img/rayo.jpg"))).getImage();
+        g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+
+        setOpaque(false);
+        super.paint(g);
+    }
+
     public Panel(JFrame borde) {
+
+
 
         BorderLayout border = new BorderLayout();
         setLayout(border);
+
 
         //--------------------menu -----
         JPanel panelMenu = new JPanel();
 
         panelMenu.setLayout(new BorderLayout());
 
-        menu = new JMenuBar();
+
+        //-------------------- creamos opciones del menu----------------
+        JMenuBar menu = new JMenuBar();
         archivo = new JMenu("Archivo");
         editar = new JMenu("Editar");
         seleccion = new JMenu("Seleccion");
@@ -65,52 +77,44 @@ class Panel extends JPanel {
         panelMenu.add(menu);
         //--------------------area de texto------------------------
         tPane = new JTabbedPane();
-        listFile = new ArrayList<File>();
-        listAreaTexto = new ArrayList<JTextPane>();
-        listAreaScroll = new ArrayList<JScrollPane>();
-        listManager = new ArrayList<UndoManager>();// rastreamos los cambios del area de texto
+        listFile = new ArrayList<>();
+        listAreaTexto = new ArrayList<>();
+        listAreaScroll = new ArrayList<>();
+        listManager = new ArrayList<>();// rastreamos los cambios del area de texto
 
         //-------------------- barra de herramientas --------------------
-        herramientas = new JToolBar(JToolBar.VERTICAL);
+        JToolBar herramientas = new JToolBar(JToolBar.VERTICAL);
         url = Main.class.getResource("/diaz/abraham/Img/icons8-eliminar-propiedad-24.png");
-        ToolBar.addButton(url, herramientas, "Cerrar ventana").addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int seleccion = tPane.getSelectedIndex();
-                if (seleccion != -1){
-                    //--------------------si existen ventanas abiertas eliminamos la ventana seleccionada----
-                    listAreaScroll.get(tPane.getSelectedIndex()).setRowHeader(null);
-                    tPane.remove(seleccion);
-                    listAreaTexto.remove(seleccion);
-                    listAreaScroll.remove(seleccion);
-                    listManager.remove(seleccion);
-                    listFile.remove(seleccion);
+        ToolBar.addButton(url, herramientas, "Cerrar ventana").addActionListener(e -> {
+            int seleccion = tPane.getSelectedIndex();
+            if (seleccion != -1){
+                //--------------------si existen ventanas abiertas eliminamos la ventana seleccionada----
+                listAreaScroll.get(tPane.getSelectedIndex()).setRowHeader(null);
+                tPane.remove(seleccion);
+                listAreaTexto.remove(seleccion);
+                listAreaScroll.remove(seleccion);
+                listManager.remove(seleccion);
+                listFile.remove(seleccion);
 
-                    contadorVentana--;
+                contadorVentana--;
 
-                    if(tPane.getSelectedIndex() == -1){
-                        existeVentana = false;
-                    }
+                if(tPane.getSelectedIndex() == -1){
+                    existeVentana = false;
                 }
             }
         });
 
         url = Main.class.getResource("/diaz/abraham/Img/icons8-nueva-ventana-50.png");
-        ToolBar.addButton(url, herramientas, "Nueva ventana").addActionListener(new ActionListener(){
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                creaPanel();
-            }
-        });
+        ToolBar.addButton(url, herramientas, "Nueva ventana").addActionListener(e -> creaPanel());
         //-------------------- Panel extra --------------------------------
-        ventanaExtra = new JPanel();
+        JPanel ventanaExtra = new JPanel();
         ventanaExtra.setLayout(new BorderLayout());
                 // etiqueta izquierda panel extra
         JPanel ventanaIzquierda = new JPanel();
         labelAncla = new JLabel();
 
         url = Main.class.getResource("/diaz/abraham/Img/icons8-ancla-50.png");
+        assert url != null;
         labelAncla.setIcon(new ImageIcon(new ImageIcon(url)
                         .getImage()
                         .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
@@ -119,6 +123,7 @@ class Panel extends JPanel {
 
             public void mouseEntered(MouseEvent e) {//al pasar el raton encima cambia de imagen
                 url = Main.class.getResource("/diaz/abraham/Img/icons8-ancla-50 (1).png");
+                assert url != null;
                 labelAncla.setIcon(new ImageIcon(new ImageIcon(url)
                         .getImage()
                         .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
@@ -127,15 +132,13 @@ class Panel extends JPanel {
 
                 if (estadoAncla) {
                     url = Main.class.getResource("/diaz/abraham/Img/icons8-ancla-50 (1).png");
-                    labelAncla.setIcon(new ImageIcon(new ImageIcon(url)
-                            .getImage()
-                            .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
                 }else{
                     url = Main.class.getResource("/diaz/abraham/Img/icons8-ancla-50.png");
-                    labelAncla.setIcon(new ImageIcon(new ImageIcon(url)
-                            .getImage()
-                            .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
                 }
+                assert url != null;
+                labelAncla.setIcon(new ImageIcon(new ImageIcon(url)
+                        .getImage()
+                        .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
             }
             public void mousePressed(MouseEvent e){// si damos click activamos las funciones ancla
                 estadoAncla = !estadoAncla;
@@ -151,18 +154,27 @@ class Panel extends JPanel {
         slider.setMinorTickSpacing(2);
         slider.setPaintLabels(true);
 
-        slider.addChangeListener(new ChangeListener() {
 
-            @Override
-            public void stateChanged(ChangeEvent e) {
-                CambiarTamanoTexto.tamanoTexto(slider.getValue(), contadorVentana, listAreaTexto);
-            }
-        });
+        slider.addChangeListener(e -> CambiarTamanoTexto.tamanoTexto(slider.getValue(), contadorVentana, listAreaTexto));
         ventanaCentro.add(slider);
 
         ventanaExtra.add(ventanaIzquierda, BorderLayout.WEST);
         ventanaExtra.add(ventanaCentro, BorderLayout.CENTER);
 
+        //--------------------menu emergente -------------------------------
+        menuEmergentes = new JPopupMenu();
+
+        JMenuItem cortar = new JMenuItem("cortar");
+        JMenuItem copiar = new JMenuItem("copiar");
+        JMenuItem pegar = new JMenuItem("pegar");
+
+        cortar.addActionListener(new DefaultEditorKit.CutAction());
+        copiar.addActionListener(new DefaultEditorKit.CopyAction());
+        pegar.addActionListener(new DefaultEditorKit.PasteAction());
+
+        menuEmergentes.add(cortar);
+        menuEmergentes.add(copiar);
+        menuEmergentes.add(pegar);
 
         //--------------------añadimos los objetos a la vista del programa----------------
 
@@ -172,181 +184,168 @@ class Panel extends JPanel {
         add(ventanaExtra, BorderLayout.SOUTH);
     }
 
+
+
+
     //--------------------agregamos las opciones del menu
     public void agregaItem(String rotulo, String menu, String accion) {
-        elementosMenu = new JMenuItem(rotulo);
+        JMenuItem elementosMenu = new JMenuItem(rotulo);
         switch (menu) {
             case "archivo" -> {
                 archivo.add(elementosMenu);
                 switch (accion) {
-                    case "nuevo" -> elementosMenu.addActionListener(new ActionListener() {
+                    case "nuevo" -> elementosMenu.addActionListener(e -> creaPanel());
+                    case "abrir" -> //-------------------- preparamos la lectura y apertura de archivos
+                            elementosMenu.addActionListener(e -> {
+                                creaPanel();
+                                JFileChooser slectorArchivos = new JFileChooser();
+                                slectorArchivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+                                int resultado = slectorArchivos.showOpenDialog(listAreaTexto.get(
+                                        tPane.getSelectedIndex()));
 
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            creaPanel();
-                        }
-                    });
-                    case "abrir" -> elementosMenu.addActionListener(new ActionListener() {
-                        //-------------------- preparamos la lectura y apertura de archivos
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            creaPanel();
-                            JFileChooser slectorArchivos = new JFileChooser();
-                            slectorArchivos.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-                            int resultado = slectorArchivos.showOpenDialog(listAreaTexto.get(
-                                    tPane.getSelectedIndex()));
+                                if (resultado == JFileChooser.APPROVE_OPTION) {
+                                    try {
+                                        boolean existePath = false;
 
-                            if (resultado == JFileChooser.APPROVE_OPTION) {
-                                try {
-                                    boolean existePath = false;
-
-                                    for (int i = 0; i < tPane.getTabCount(); i++) {
-                                        File f = slectorArchivos.getSelectedFile();
-
-                                        if (listFile.get(i).getPath().equals(f.getPath())) existePath = true;
-                                    }
-                                    // si el archivo no esta abierto lo leemos y añadimos al area de texto en una nueva ventana
-                                    if (!existePath) {
-                                        File archivo = slectorArchivos.getSelectedFile();
-                                        listFile.set(tPane.getSelectedIndex(), archivo);
-
-                                        FileReader entrada = new FileReader(
-                                                listFile.get(
-                                                                tPane.getSelectedIndex())
-                                                        .getPath());
-
-                                        BufferedReader miReader = new BufferedReader(entrada);
-                                        String linea = "";
-
-                                        String titulo = listFile.get(tPane.getSelectedIndex()).getName();
-                                        // el titulo se le agrega a la pestaña creada para el area de texto
-                                        tPane.setTitleAt(tPane.getSelectedIndex(), titulo);
-                                        // lee cada linea del archivo para despues imprimirlo
-                                        while (linea != null) {
-                                            linea = miReader.readLine();
-
-                                            if (linea != null) AgregamosTextoLinea.append
-                                                    (linea + "\n", listAreaTexto
-                                                            .get(tPane.getSelectedIndex()));
-
-                                        }
-                                        Theme.fondo(contadorVentana, tipoFondo,slider.getValue() , listAreaTexto);
-                                    } else {
-                                        // si el archivo esta abierto vamos a recorrer las ventanas para irnos a la abierta
                                         for (int i = 0; i < tPane.getTabCount(); i++) {
                                             File f = slectorArchivos.getSelectedFile();
 
-                                            if (listFile.get(i).getPath().equals(f.getPath())) {
-                                                tPane.setSelectedIndex(i);
+                                            if (listFile.get(i).getPath().equals(f.getPath())) existePath = true;
+                                        }
+                                        // si el archivo no esta abierto lo leemos y añadimos al area de texto en una nueva ventana
+                                        if (!existePath) {
+                                            File archivo = slectorArchivos.getSelectedFile();
+                                            listFile.set(tPane.getSelectedIndex(), archivo);
 
+                                            FileReader entrada = new FileReader(
+                                                    listFile.get(
+                                                                    tPane.getSelectedIndex())
+                                                            .getPath());
 
-                                                listAreaTexto.remove(tPane.getTabCount() - 1);
-                                                listAreaScroll.remove(tPane.getTabCount() - 1);
-                                                listFile.remove(tPane.getTabCount() - 1);
-                                                tPane.remove(tPane.getTabCount() - 1);
-                                                contadorVentana--;
+                                            BufferedReader miReader = new BufferedReader(entrada);
+                                            String linea = "";
 
-                                                break;
+                                            String titulo = listFile.get(tPane.getSelectedIndex()).getName();
+                                            // el titulo se le agrega a la pestaña creada para el area de texto
+                                            tPane.setTitleAt(tPane.getSelectedIndex(), titulo);
+                                            // lee cada linea del archivo para despues imprimirlo
+                                            while (linea != null) {
+                                                linea = miReader.readLine();
+
+                                                if (linea != null) AgregamosTextoLinea.append
+                                                        (linea + "\n", listAreaTexto
+                                                                .get(tPane.getSelectedIndex()));
 
                                             }
+                                            Theme.fondo(contadorVentana, tipoFondo,slider.getValue() , listAreaTexto);
+                                        } else {
+                                            // si el archivo esta abierto vamos a recorrer las ventanas para irnos a la abierta
+                                            for (int i = 0; i < tPane.getTabCount(); i++) {
+                                                File f = slectorArchivos.getSelectedFile();
+
+                                                if (listFile.get(i).getPath().equals(f.getPath())) {
+                                                    tPane.setSelectedIndex(i);
+
+
+                                                    listAreaTexto.remove(tPane.getTabCount() - 1);
+                                                    listAreaScroll.remove(tPane.getTabCount() - 1);
+                                                    listFile.remove(tPane.getTabCount() - 1);
+                                                    tPane.remove(tPane.getTabCount() - 1);
+                                                    contadorVentana--;
+
+                                                    break;
+
+                                                }
+                                            }
                                         }
+
+                                    } catch (IOException ex) {
+                                        throw new RuntimeException(ex);
                                     }
 
-                                } catch (IOException ex) {
-                                    throw new RuntimeException(ex);
+                                } else {
+                                    // si el usuario cancela eliminamos la nueva ventana creada
+                                    int seleccion = tPane.getSelectedIndex();
+
+                                    if (seleccion != -1) {
+
+                                        listAreaTexto.remove(tPane.getTabCount() - 1);
+                                        listAreaScroll.remove(tPane.getTabCount() - 1);
+                                        listFile.remove(tPane.getTabCount() - 1);
+                                        tPane.remove(tPane.getTabCount() - 1);
+                                        contadorVentana--;
+
+                                    }
                                 }
 
-                            } else {
-                                // si el usuario cancela eliminamos la nueva ventana creada
-                                int seleccion = tPane.getSelectedIndex();
 
-                                if (seleccion != -1) {
+                            });
+                    case "guardar" -> //--------------------
+                            elementosMenu.addActionListener(e -> {
+                                if (listFile.get(tPane.getSelectedIndex()).getPath().equals("")) {
+                                    JFileChooser guardarArchivo = new JFileChooser();
+                                    int opc = guardarArchivo.showOpenDialog(null);
+                                    //--------------------preguntamos al usuario si guarda o cancela
+                                    if (opc == JFileChooser.APPROVE_OPTION) {
+                                        File archivo = guardarArchivo.getSelectedFile();
+                                        listFile.set(tPane.getSelectedIndex(), archivo);
+                                        tPane.setTitleAt(tPane.getSelectedIndex(), archivo.getName());
+                                        //--------------------leemos y reescribimos el archivo en un o nuevo que guardamos
+                                        try {
+                                            FileWriter fw = new FileWriter(listFile.get(tPane.getSelectedIndex()).getPath());
+                                            String texto = listAreaTexto.get(tPane.getSelectedIndex()).getText();
 
-                                    listAreaTexto.remove(tPane.getTabCount() - 1);
-                                    listAreaScroll.remove(tPane.getTabCount() - 1);
-                                    listFile.remove(tPane.getTabCount() - 1);
-                                    tPane.remove(tPane.getTabCount() - 1);
-                                    contadorVentana--;
+                                            for (int i = 0; i < texto.length(); i++) {
+                                                fw.write(texto.charAt(i));
+                                            }
 
-                                }
-                            }
+                                            fw.close();
 
 
-                        }
-                    });
-                    case "guardar" -> elementosMenu.addActionListener(new ActionListener() {
-                        //--------------------
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if (listFile.get(tPane.getSelectedIndex()).getPath().equals("")) {
-                                JFileChooser guardarArchivo = new JFileChooser();
-                                int opc = guardarArchivo.showOpenDialog(null);
-                                //--------------------preguntamos al usuario si guarda o cancela
-                                if (opc == JFileChooser.APPROVE_OPTION) {
-                                    File archivo = guardarArchivo.getSelectedFile();
-                                    listFile.set(tPane.getSelectedIndex(), archivo);
-                                    tPane.setTitleAt(tPane.getSelectedIndex(), archivo.getName());
-                                    //--------------------leemos y reescribimos el archivo en un o nuevo que guardamos
+                                        } catch (IOException ex) {
+                                            throw new RuntimeException(ex);
+                                        }
+                                    }
+                                } else {
                                     try {
                                         FileWriter fw = new FileWriter(listFile.get(tPane.getSelectedIndex()).getPath());
                                         String texto = listAreaTexto.get(tPane.getSelectedIndex()).getText();
+
 
                                         for (int i = 0; i < texto.length(); i++) {
                                             fw.write(texto.charAt(i));
                                         }
 
                                         fw.close();
-
-
                                     } catch (IOException ex) {
                                         throw new RuntimeException(ex);
                                     }
-                                }
-                            } else {
-                                try {
-                                    FileWriter fw = new FileWriter(listFile.get(tPane.getSelectedIndex()).getPath());
-                                    String texto = listAreaTexto.get(tPane.getSelectedIndex()).getText();
 
-
-                                    for (int i = 0; i < texto.length(); i++) {
-                                        fw.write(texto.charAt(i));
-                                    }
-
-                                    fw.close();
-                                } catch (IOException ex) {
-                                    throw new RuntimeException(ex);
                                 }
 
-                            }
+                            });
+                    case "guardarComo" -> elementosMenu.addActionListener(e -> {
+                        JFileChooser guardarArchivo = new JFileChooser();
+                        int opc = guardarArchivo.showOpenDialog(null);
 
-                        }
-                    });
-                    case "guardarComo" -> elementosMenu.addActionListener(new ActionListener() {
+                        if (opc == JFileChooser.APPROVE_OPTION) {
+                            File archivo = guardarArchivo.getSelectedFile();
+                            listFile.set(tPane.getSelectedIndex(), archivo);
+                            tPane.setTitleAt(tPane.getSelectedIndex(), archivo.getName());
 
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            JFileChooser guardarArchivo = new JFileChooser();
-                            int opc = guardarArchivo.showOpenDialog(null);
+                            try {
+                                FileWriter fw = new FileWriter(listFile.get(tPane.getSelectedIndex()).getPath());
+                                String texto = listAreaTexto.get(tPane.getSelectedIndex()).getText();
 
-                            if (opc == JFileChooser.APPROVE_OPTION) {
-                                File archivo = guardarArchivo.getSelectedFile();
-                                listFile.set(tPane.getSelectedIndex(), archivo);
-                                tPane.setTitleAt(tPane.getSelectedIndex(), archivo.getName());
-
-                                try {
-                                    FileWriter fw = new FileWriter(listFile.get(tPane.getSelectedIndex()).getPath());
-                                    String texto = listAreaTexto.get(tPane.getSelectedIndex()).getText();
-
-                                    for (int i = 0; i < texto.length(); i++) {
-                                        fw.write(texto.charAt(i));
-                                    }
-
-                                    fw.close();
-
-
-                                } catch (IOException ex) {
-                                    throw new RuntimeException(ex);
+                                for (int i = 0; i < texto.length(); i++) {
+                                    fw.write(texto.charAt(i));
                                 }
+
+                                fw.close();
+
+
+                            } catch (IOException ex) {
+                                throw new RuntimeException(ex);
                             }
                         }
                     });
@@ -356,20 +355,14 @@ class Panel extends JPanel {
             case "editar" -> {
                 editar.add(elementosMenu);
                 switch (accion) {
-                    case "deshacer" -> elementosMenu.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if (listManager.get(tPane.getSelectedIndex()).canUndo()) {
-                                listManager.get(tPane.getSelectedIndex()).undo();
-                            }
+                    case "deshacer" -> elementosMenu.addActionListener(e -> {
+                        if (listManager.get(tPane.getSelectedIndex()).canUndo()) {
+                            listManager.get(tPane.getSelectedIndex()).undo();
                         }
                     });
-                    case "rehacer" -> elementosMenu.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if (listManager.get(tPane.getSelectedIndex()).canRedo()) {
-                                listManager.get(tPane.getSelectedIndex()).redo();
-                            }
+                    case "rehacer" -> elementosMenu.addActionListener(e -> {
+                        if (listManager.get(tPane.getSelectedIndex()).canRedo()) {
+                            listManager.get(tPane.getSelectedIndex()).redo();
                         }
                     });
                     case "cortar" -> elementosMenu.addActionListener(new DefaultEditorKit.CutAction());
@@ -382,25 +375,16 @@ class Panel extends JPanel {
 
             case "seleccion" -> {
                 seleccion.add(elementosMenu);
-                elementosMenu.addActionListener(new ActionListener() {
-
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        listAreaTexto.get(tPane.getSelectedIndex()).selectAll();
-                    }
-                });
+                elementosMenu.addActionListener(e -> listAreaTexto.get(tPane.getSelectedIndex()).selectAll());
             }
 
             case "ver" -> {
                 ver.add(elementosMenu);
                 if (accion.equals("numeracion")) {
-                    elementosMenu.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
+                    elementosMenu.addActionListener(e -> {
 
-                            numeros = !numeros;
-                            verNumeracion.viewNumeracion(contadorVentana, numeros, listAreaTexto, listAreaScroll);
-                        }
+                        numeros = !numeros;
+                        verNumeracion.viewNumeracion(contadorVentana, numeros, listAreaTexto, listAreaScroll);
                     });
 
                 }
@@ -408,21 +392,14 @@ class Panel extends JPanel {
             case "apariencia" -> {
                 apariencia.add(elementosMenu);
                 if(accion.equals("normal")){
-                    elementosMenu.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tipoFondo = "N";
-                            if(tPane.getTabCount() >0) Theme.fondo(contadorVentana, tipoFondo, slider.getValue(), listAreaTexto);
-                        }
+                    elementosMenu.addActionListener(e -> {
+                        tipoFondo = "N";
+                        if(tPane.getTabCount() >0) Theme.fondo(contadorVentana, tipoFondo, slider.getValue(), listAreaTexto);
                     });
                 } else if (accion.equals("dark")) {
-                    elementosMenu.addActionListener(new ActionListener() {
-
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            tipoFondo = "D";
-                            if(tPane.getTabCount()> 0) Theme.fondo(contadorVentana, tipoFondo, slider.getValue(), listAreaTexto);
-                        }
+                    elementosMenu.addActionListener(e -> {
+                        tipoFondo = "D";
+                        if(tPane.getTabCount()> 0) Theme.fondo(contadorVentana, tipoFondo, slider.getValue(), listAreaTexto);
                     });
 
                 }
@@ -438,7 +415,7 @@ class Panel extends JPanel {
     public void creaPanel() {
 
 
-        ventanaText = new JPanel();
+        JPanel ventanaText = new JPanel();
         ventanaText.setLayout(new BorderLayout());
         listFile.add(new File(""));
         listAreaTexto.add(new JTextPane());
@@ -447,6 +424,7 @@ class Panel extends JPanel {
 
         listAreaTexto.get(contadorVentana).getDocument().addUndoableEditListener(listManager.get(contadorVentana));
 
+        listAreaTexto.get(contadorVentana).setComponentPopupMenu(menuEmergentes);
 
         ventanaText.add(listAreaScroll.get(contadorVentana), BorderLayout.CENTER);
         tPane.addTab("nueva ventana", ventanaText);
@@ -465,23 +443,24 @@ class Panel extends JPanel {
     private Boolean numeros = false;
     private int contadorVentana = 0;//nos cuenta las ventanas de texto
     private boolean existeVentana = false;// comprobamos si exiten ventanas creadas
-    private JTabbedPane tPane;
-    private JPanel ventanaText;
-    private JPanel ventanaExtra;
+    private final JTabbedPane tPane;
     //private JTextPane areaText;
-    private ArrayList<JTextPane> listAreaTexto;
-    private ArrayList<UndoManager> listManager;
-    private ArrayList<JScrollPane> listAreaScroll;
-    private ArrayList<File> listFile;
+    private final ArrayList<JTextPane> listAreaTexto;
+    private final ArrayList<UndoManager> listManager;
+    private final ArrayList<JScrollPane> listAreaScroll;
+    private final ArrayList<File> listFile;
 
-    //-------------------- creamos opciones del menu----------------
-    private JMenuBar menu;
-    private JMenu archivo, editar, seleccion, ver, apariencia;
-    private JMenuItem elementosMenu;
-    private JToolBar herramientas;
+    private final JMenu archivo;
+    private final JMenu editar;
+    private final JMenu seleccion;
+    private final JMenu ver;
+    private final JMenu apariencia;
     private URL url;
 
-    private JLabel labelAncla;
+    private final JLabel labelAncla;
     private Boolean estadoAncla = false;
-    private JSlider slider;
+    private final JSlider slider;
+
+    private final JPopupMenu menuEmergentes;
+
 }

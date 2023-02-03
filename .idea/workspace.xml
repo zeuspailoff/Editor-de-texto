@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="agregamos iconos a ventana inferior">
-      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/CambiarTamanoTexto.java" afterDir="false" />
+    <list default="true" id="47af385a-26d0-47e6-b119-875a26dcb9fc" name="Changes" comment="agregamos funcionalidad ancla y opcion de cambio tamaño de texto">
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/ImgFondo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/icons8-electricity-hazard-48.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/diaz/abraham/Img/rayo.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Panel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/Theme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Utilidades/Theme.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/diaz/abraham/Editor/Ventana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/diaz/abraham/Editor/Ventana.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -292,7 +293,14 @@
       <option name="project" value="LOCAL" />
       <updated>1675445015682</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="agregamos funcionalidad ancla y opcion de cambio tamaño de texto">
+      <created>1675447997232</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1675447997232</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -326,7 +334,8 @@
     <MESSAGE value="arreglamos codigo que no permitia que los icons se mostraran" />
     <MESSAGE value="agregamos ventana inferior" />
     <MESSAGE value="agregamos iconos a ventana inferior" />
-    <option name="LAST_COMMIT_MESSAGE" value="agregamos iconos a ventana inferior" />
+    <MESSAGE value="agregamos funcionalidad ancla y opcion de cambio tamaño de texto" />
+    <option name="LAST_COMMIT_MESSAGE" value="agregamos funcionalidad ancla y opcion de cambio tamaño de texto" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
