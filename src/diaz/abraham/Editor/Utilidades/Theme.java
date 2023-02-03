@@ -9,7 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Theme {
-    public static void fondo(int contador, String tipo, ArrayList<JTextPane> list){
+    public static void fondo(int contador, String tipo, int tamano, ArrayList<JTextPane> list){
         if(tipo.equals("N")){
             for(int i = 0; i < contador; i++){
 
@@ -19,6 +19,7 @@ public class Theme {
                 AttributeSet aset = sc.addAttribute(SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.BLACK);
                 //-------------------- TIPO DE TEXTO --------------------
                 aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Arial");
+                sc.addAttribute(aset, StyleConstants.FontSize, tamano);
 
                 list.get(i).setCharacterAttributes(aset,false);
                 list.get(i).setBackground(Color.WHITE);
@@ -34,6 +35,7 @@ public class Theme {
                         Color.WHITE);
                 //-------------------- TIPO DE TEXTO --------------------
                 aset = sc.addAttribute(aset, StyleConstants.FontFamily, "Arial");
+                sc.addAttribute(aset, StyleConstants.FontSize, tamano);
 
                 list.get(i).setCharacterAttributes(aset,false);
                 list.get(i).setBackground(new Color(32,33,36));

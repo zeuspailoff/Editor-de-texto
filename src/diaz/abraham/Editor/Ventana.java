@@ -8,7 +8,7 @@ public class Ventana extends JFrame {
     public Ventana() {
         setBounds(300,300,600,600);
         setTitle("ThunderEdit");
-        add(new Panel());
+        add(new Panel(this));
     }
 }
 

@@ -1,11 +1,10 @@
 package diaz.abraham.Editor;
 
-import diaz.abraham.Editor.Utilidades.AgregamosTextoLinea;
-import diaz.abraham.Editor.Utilidades.Theme;
-import diaz.abraham.Editor.Utilidades.ToolBar;
-import diaz.abraham.Editor.Utilidades.verNumeracion;
+import diaz.abraham.Editor.Utilidades.*;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.undo.UndoManager;
 import java.awt.*;
@@ -18,7 +17,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 class Panel extends JPanel {
-    public Panel() {
+    public Panel(JFrame borde) {
 
         BorderLayout border = new BorderLayout();
         setLayout(border);
@@ -140,11 +139,26 @@ class Panel extends JPanel {
             }
             public void mousePressed(MouseEvent e){// si damos click activamos las funciones ancla
                 estadoAncla = !estadoAncla;
+                borde.setAlwaysOnTop(estadoAncla);
             }
         });
 
         ventanaIzquierda.add(labelAncla);
+        //--------------------funciones ventana central--------------------
         JPanel ventanaCentro = new JPanel();
+        slider = new JSlider(10,40, 14);
+        slider.setMajorTickSpacing(4);//separacion entre niveles slider
+        slider.setMinorTickSpacing(2);
+        slider.setPaintLabels(true);
+
+        slider.addChangeListener(new ChangeListener() {
+
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                CambiarTamanoTexto.tamanoTexto(slider.getValue(), contadorVentana, listAreaTexto);
+            }
+        });
+        ventanaCentro.add(slider);
 
         ventanaExtra.add(ventanaIzquierda, BorderLayout.WEST);
         ventanaExtra.add(ventanaCentro, BorderLayout.CENTER);
@@ -216,7 +230,7 @@ class Panel extends JPanel {
                                                             .get(tPane.getSelectedIndex()));
 
                                         }
-                                        Theme.fondo(contadorVentana, tipoFondo, listAreaTexto);
+                                        Theme.fondo(contadorVentana, tipoFondo,slider.getValue() , listAreaTexto);
                                     } else {
                                         // si el archivo esta abierto vamos a recorrer las ventanas para irnos a la abierta
                                         for (int i = 0; i < tPane.getTabCount(); i++) {
@@ -398,7 +412,7 @@ class Panel extends JPanel {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             tipoFondo = "N";
-                            if(tPane.getTabCount() >0) Theme.fondo(contadorVentana, tipoFondo, listAreaTexto);
+                            if(tPane.getTabCount() >0) Theme.fondo(contadorVentana, tipoFondo, slider.getValue(), listAreaTexto);
                         }
                     });
                 } else if (accion.equals("dark")) {
@@ -407,7 +421,7 @@ class Panel extends JPanel {
                         @Override
                         public void actionPerformed(ActionEvent e) {
                             tipoFondo = "D";
-                            if(tPane.getTabCount()> 0) Theme.fondo(contadorVentana, tipoFondo, listAreaTexto);
+                            if(tPane.getTabCount()> 0) Theme.fondo(contadorVentana, tipoFondo, slider.getValue(), listAreaTexto);
                         }
                     });
 
@@ -442,7 +456,7 @@ class Panel extends JPanel {
         tPane.setSelectedIndex(contadorVentana);
         contadorVentana++;
 
-        Theme.fondo(contadorVentana, tipoFondo, listAreaTexto);
+        Theme.fondo(contadorVentana, tipoFondo, slider.getValue(), listAreaTexto);
 
         existeVentana = true;
 
@@ -469,4 +483,5 @@ class Panel extends JPanel {
 
     private JLabel labelAncla;
     private Boolean estadoAncla = false;
+    private JSlider slider;
 }
