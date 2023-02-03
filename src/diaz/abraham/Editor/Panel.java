@@ -94,7 +94,7 @@ class Panel extends JPanel {
             }
         });
 
-        url = Main.class.getResource("diaz/abraham/Img/icons8-nueva-ventana-50.png");
+        url = Main.class.getResource("/diaz/abraham/Img/icons8-nueva-ventana-50.png");
         ToolBar.addButton(url, herramientas, "Nueva ventana").addActionListener(new ActionListener(){
 
             @Override

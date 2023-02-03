@@ -7,7 +7,7 @@ import java.net.URL;
 public class ToolBar {
     //-------------------- preparamos los botones de la barra de herramientas --------------------
     public static JButton addButton(URL url, Object objContenedor, String rotulo) {
-        JButton button = new JButton(new ImageIcon(new ImageIcon("url")
+        JButton button = new JButton(new ImageIcon(new ImageIcon(url)
                 .getImage()
                 .getScaledInstance(20, 20, Image.SCALE_SMOOTH)));
 
