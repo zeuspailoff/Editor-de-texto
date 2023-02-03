@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ThunderEdit:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/ThunderEdit_jar</output-path>
+    <root id="archive" name="ThunderEdit.jar">
+      <element id="module-output" name="ThunderEdit" />
+    </root>
+  </artifact>
+</component>
